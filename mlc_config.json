@@ -1,0 +1,16 @@
+{
+  "replacementPatterns": [
+    {
+      "pattern": "^/",
+      "replacement": "https://github.com/api3dao/airnode-starter/blob/main/"
+    }
+  ],
+  "ignorePatterns": [
+    {
+      "pattern": "^https://github.com.*\.(js|env|json)$"
+    }
+  ],
+  "retryOn429": true,
+  "retryCount": 5,
+  "fallbackRetryDelay": "30s"
+}
