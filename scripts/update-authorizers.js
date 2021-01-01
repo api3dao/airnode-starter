@@ -1,6 +1,6 @@
 require('dotenv').config();
 const ethers = require('ethers');
-const airnodeAdmin = require('airnode-admin');
+const airnodeAdmin = require('@api3/airnode-admin');
 const evm = require('../src/evm');
 const parameters = require('../src/parameters');
 

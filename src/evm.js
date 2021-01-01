@@ -1,4 +1,5 @@
 const ethers = require('ethers');
+const airnodeProtocol = require('@api3/airnode-protocol');
 
 if (
   !process.env.PROVIDER_URL_ROPSTEN ||
@@ -8,8 +9,8 @@ if (
 }
 
 module.exports = {
-  airnodeRopstenAddress: '0xF8d32C3e53F7DA6e7CB82323f2cAB2159776b832',
-  AirnodeArtifact: require('../artifacts/airnode-protocol/contracts/Airnode.sol/Airnode.json'),
+  airnodeRopstenAddress: airnodeProtocol.AirnodeAddresses[3],
+  AirnodeArtifact: airnodeProtocol.AirnodeArtifact,
   ExampleClientArtifact: require('../artifacts/contracts/ExampleClient.sol/ExampleClient.json'),
   getRopstenWallet: function () {
     const wallet = ethers.Wallet.fromMnemonic(process.env.MNEMONIC);
