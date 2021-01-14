@@ -53,6 +53,8 @@ Follow the [docs](https://github.com/api3dao/api3-docs/blob/master/provider-guid
 Place them at `/config/.env`, similar to [`/config/example.env`](/config/example.env).
 Do not confuse this `.env` file with the one in the project root that keeps your mnemonic phrase and provider URL.
 
+**Following these instructions to deploy an Airnode on AWS is [free](https://aws.amazon.com/free/) at the time this is being written.**
+
 ## Step 1: Deploy an Airnode
 
 Normally, you would need to do two things before you deploy an Airnode:
@@ -105,6 +107,7 @@ npm run fund-master-wallet
 ```
 
 Your deployed Airnode will use these funds to make the transaction that will create the provider record on the chain you are operating on, and send the leftover ETH back to your address automatically.
+**You will have to wait ~1 minute for this to happen, otherwise the next step will fail.**
 
 ### Make your endpoint publicly accessible
 
@@ -169,7 +172,7 @@ which should be fulfilled by the Airnode and printed out on the terminal.
 Note that now that the price is on-chain, you can use it in your contract to implement any arbitrary logic.
 
 Try replacing the `coinId` value in [`make-request.js`](/scripts/make-request.js) from `"ethereum"` to `"bitcoin"` and make another request.
-You can see the API docs to see which coin IDs are supported.
+You can see the API docs to find out which coin IDs are supported.
 
 ## Conclusion
 
@@ -181,3 +184,17 @@ If you want to learn more, see the following resources:
 - [API3 docs](https://github.com/api3dao/api3-docs) will provide you with the theory of how Airnode and its protocol works
 - [`@api3/airnode-admin`](https://github.com/api3dao/airnode/tree/master/packages/admin) lets you interact with the Airnode contract (to create a request, endorse a client, etc.) using a CLI tool
 - [Airnode client examples](https://github.com/api3dao/airnode-client-examples) demonstrate different request patterns that the Airnode protocol supports (for example, we used a full request in this starter project)
+
+## Taking down your Airnode
+
+It is very unlikely for you to forget to take down your Airnode because it is designed to be *set-and-forget*.
+When you are done with this project, go to `config/` as your working directory and use the command below where `$RECEIPT_FILENAME` is replaced with the name of your receipt file ending with `.receipt.json` (you can refer to our [Docker instructions](https://github.com/api3dao/airnode/blob/master/Docker.md) for more information)
+
+```sh
+docker run -it --rm \
+  --env-file .env \
+  --env COMMAND=remove-with-receipt \
+  --env RECEIPT_FILENAME=$RECEIPT_FILENAME \
+  -v $(pwd):/airnode/out \
+  api3/airnode:latest
+```
