@@ -5,7 +5,7 @@ const evm = require('../src/evm');
 const parameters = require('../src/parameters');
 
 async function main() {
-  const airnode = new ethers.Contract(evm.airnodeRopstenAddress, evm.AirnodeArtifact.abi, evm.getRopstenWallet());
+  const airnode = await evm.getAirnode();
   await airnodeAdmin.updateAuthorizers(airnode, parameters.providerId, parameters.endpointId, [
     ethers.constants.AddressZero,
   ]);

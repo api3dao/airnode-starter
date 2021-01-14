@@ -5,7 +5,7 @@ const util = require('../src/util');
 
 async function main() {
   const amount = '0.1'; // ETH
-  const wallet = evm.getRopstenWallet();
+  const wallet = await evm.getWallet();
   const designatedWalletAddress = util.readFromLogJson('Designated wallet address');
   const receipt = await wallet.sendTransaction({
     to: designatedWalletAddress,

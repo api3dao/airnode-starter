@@ -3,15 +3,22 @@
 > A starter project for deploying an Airnode and making requests to it
 
 This project is composed of two steps:
-1. Deploy an Airnode on Ropsten
+1. Deploy an Airnode on a supported chain
 1. Make a request to the deployed Airnode in a contract
 
-You can skip the first step and use the Airnode that we have deployed as well.
+Currently supported chains:
+- Ropsten
+- Rinkeby
+- Goerli
+- xDai
+- Fantom
+
+You can skip the first step and use the Airnode that we have deployed on **Ropsten** as well.
 You are recommended to read the contents of the scripts as you run them, and read the entire readme before starting.
 
 ## Setup
 
-First, you need to create a Ropsten wallet with some ETH in it.
+First, you need to create a wallet and fund it.
 
 1. Clone this repo
 2. Run the following to install the dependencies
@@ -28,14 +35,16 @@ npm run generate-wallet
 ```
 5. Install [Metamask](https://metamask.io/) to your web browser
 6. Import the mnemonic phrase to Metamask
-7. Use the [faucet](https://faucet.metamask.io/) to get some Ropsten ETH
+7. Use the [faucet](https://faucet.metamask.io/) to get some Ropsten ETH, or use any other appropriate source for the chain you will be working on
 
-Then, you need to get a Ropsten provider URL.
+Then, you need to get a provider URL.
 This will be used both by the deployed Airnode and by you while interacting with contracts.
+If you will be working on Ropsten:
 1. Go to [Infura](https://infura.io/), create an account and get a Ropsten provider URL
 2. Replace `https://ropsten.infura.io/v3/{YOUR_KEY}` in your `.env` file with the URL you got from Infura
 
-Note that you can use any other provider or your own Ropsten node.
+Adapt the steps above if you will be using another chain.
+Note that you can use any other provider or your own node.
 However, if you will be deploying your own Airnode, the provider endpoint must be publicly accessible (i.e., `127.0.0.1:8545` will not work).
 
 *(You only need cloud credentials if you will not be skipping Step 1.)*
@@ -44,13 +53,14 @@ Follow the [docs](https://github.com/api3dao/api3-docs/blob/master/provider-guid
 Place them at `/config/.env`, similar to [`/config/example.env`](/config/example.env).
 Do not confuse this `.env` file with the one in the project root that keeps your mnemonic phrase and provider URL.
 
-## Step 1: Deploy an Airnode on Ropsten
+## Step 1: Deploy an Airnode
 
 Normally, you would need to do two things before you deploy an Airnode:
 1. [Specify the API integration](https://github.com/api3dao/api3-docs/blob/master/provider-guides/api-integration.md)
 1. [Configure your Airnode](https://github.com/api3dao/api3-docs/blob/master/provider-guides/configuring-airnode.md)
 
-For this project, we specified a minimal integration to the popular and free [CoinGecko API](https://www.coingecko.com/en/api), and prepared the configuration files to serve it over the Ropsten testnet. We only integrated a single API operation, `GET` for `/coins/{id}`, which you can see below.
+For this project, we specified a minimal integration to the popular and free [CoinGecko API](https://www.coingecko.com/en/api), and prepared the configuration files.
+We only integrated a single API operation, `GET` for `/coins/{id}`, which you can see below.
 The `localization`, `tickers`, `community_data`, `developer_data` and `sparkline` parameters are [fixed](https://github.com/api3dao/api3-docs/blob/master/provider-guides/api-integration.md#fixedoperationparameters) as `"false"`, while `market_data` is fixed as `"true"`.
 The `id` parameter will be provided by the requester (e.g., `"ethereum"`) under the name `coinId`.
 You can make test calls over the [CoinGecko API docs](https://www.coingecko.com/en/api) to see the response format.
@@ -94,7 +104,7 @@ Run the following to send your master wallet 0.1 ETH for it to [create a provide
 npm run fund-master-wallet
 ```
 
-Your deployed Airnode will use these funds to make the transaction that will create the provider record on Ropsten, and send the leftover ETH back to your address automatically.
+Your deployed Airnode will use these funds to make the transaction that will create the provider record on the chain you are operating on, and send the leftover ETH back to your address automatically.
 
 ### Make your endpoint publicly accessible
 
@@ -147,7 +157,7 @@ npm run fund-designated-wallet
 ```
 
 The requests that the client contract will make will be funded by this 0.1 ETH.
-Note that you may have to run `fund-designated-wallet` again if you make too many requests and use up this 0.1 ETH (unlikely on Ropsten because the gas price is low).
+Note that you may have to run `fund-designated-wallet` again if you make too many requests and use up this 0.1 ETH (very unlikely).
 
 ### Make a request
 
@@ -169,5 +179,5 @@ If you want to learn more, see the following resources:
 - [API3 whitepaper](https://github.com/api3dao/api3-whitepaper) will give you a broad overview of the project
 - [Medium posts](https://github.com/api3dao/api3-docs/blob/master/medium.md) are a more digestible version of the whitepaper
 - [API3 docs](https://github.com/api3dao/api3-docs) will provide you with the theory of how Airnode and its protocol works
-- [`airnode-admin`](https://github.com/api3dao/airnode-admin) lets you interact with the Airnode contract (to create a request, endorse a client, etc.) using a CLI tool
+- [`@api3/airnode-admin`](https://github.com/api3dao/airnode/tree/master/packages/admin) lets you interact with the Airnode contract (to create a request, endorse a client, etc.) using a CLI tool
 - [Airnode client examples](https://github.com/api3dao/airnode-client-examples) demonstrate different request patterns that the Airnode protocol supports (for example, we used a full request in this starter project)

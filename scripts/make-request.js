@@ -7,13 +7,13 @@ const parameters = require('../src/parameters');
 
 async function main() {
   const coinId = 'ethereum';
-  const wallet = evm.getRopstenWallet();
+  const wallet = await evm.getWallet();
   const exampleClient = new ethers.Contract(
     util.readFromLogJson('ExampleClient address'),
     evm.ExampleClientArtifact.abi,
     wallet
   );
-  const airnode = new ethers.Contract(evm.airnodeRopstenAddress, evm.AirnodeArtifact.abi);
+  const airnode = await evm.getAirnode();
 
   console.log('Making the request...');
   async function makeRequest() {

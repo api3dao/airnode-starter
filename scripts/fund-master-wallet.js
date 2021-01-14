@@ -9,7 +9,7 @@ async function main() {
     throw new Error('Could not read the master wallet address from the deployment receipt');
   }
   const amount = '0.1'; // ETH
-  const wallet = evm.getRopstenWallet();
+  const wallet = await evm.getWallet();
   const txReceipt = await wallet.sendTransaction({
     to: masterWalletAddress,
     value: ethers.utils.parseEther(amount),

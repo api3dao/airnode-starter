@@ -150,8 +150,8 @@
         "type": "evm",
         "providers": [
           {
-            "name": "ropsten-infura",
-            "url": "{FILL_ROPSTEN_PROVIDER_URL}"
+            "name": "my-provider",
+            "url": "{FILL_PROVIDER_URL}"
           }
         ],
         "contracts": {

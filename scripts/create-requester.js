@@ -1,15 +1,14 @@
 require('dotenv').config();
-const ethers = require('ethers');
 const airnodeAdmin = require('@api3/airnode-admin');
 const evm = require('../src/evm');
 const util = require('../src/util');
 
 async function main() {
-  const wallet = evm.getRopstenWallet();
-  const airnode = new ethers.Contract(evm.airnodeRopstenAddress, evm.AirnodeArtifact.abi, wallet);
-  const requesterIndex = await airnodeAdmin.createRequester(airnode, wallet.address);
+  const airnode = await evm.getAirnode();
+  const requesterAdminAddress = (await evm.getWallet()).address;
+  const requesterIndex = await airnodeAdmin.createRequester(airnode, requesterAdminAddress);
   util.updateLogJson('Requester index', requesterIndex);
-  console.log(`Created requester with index ${requesterIndex} and admin address ${wallet.address}`);
+  console.log(`Created requester with index ${requesterIndex} and admin address ${requesterAdminAddress}`);
 }
 
 main()

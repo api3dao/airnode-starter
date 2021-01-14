@@ -1,5 +1,4 @@
 require('dotenv').config();
-const ethers = require('ethers');
 const airnodeAdmin = require('@api3/airnode-admin');
 const evm = require('../src/evm');
 const util = require('../src/util');
@@ -7,7 +6,7 @@ const util = require('../src/util');
 async function main() {
   const requesterIndex = util.readFromLogJson('Requester index');
   const exampleClientAddress = util.readFromLogJson('ExampleClient address');
-  const airnode = new ethers.Contract(evm.airnodeRopstenAddress, evm.AirnodeArtifact.abi, evm.getRopstenWallet());
+  const airnode = await evm.getAirnode();
   await airnodeAdmin.endorseClient(airnode, requesterIndex, exampleClientAddress);
   console.log(`Endorsed ${exampleClientAddress} by requester with index ${requesterIndex}`);
 }

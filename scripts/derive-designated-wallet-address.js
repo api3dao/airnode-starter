@@ -1,5 +1,4 @@
 require('dotenv').config();
-const ethers = require('ethers');
 const airnodeAdmin = require('@api3/airnode-admin');
 const evm = require('../src/evm');
 const util = require('../src/util');
@@ -7,7 +6,7 @@ const parameters = require('../src/parameters');
 
 async function main() {
   const requesterIndex = util.readFromLogJson('Requester index');
-  const airnode = new ethers.Contract(evm.airnodeRopstenAddress, evm.AirnodeArtifact.abi, evm.getRopstenWallet());
+  const airnode = await evm.getAirnode();
   const designatedWalletAddress = await airnodeAdmin.deriveDesignatedWallet(
     airnode,
     parameters.providerId,
