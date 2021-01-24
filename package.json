@@ -33,7 +33,7 @@
     "eslint": "^7.18.0",
     "ethereum-waffle": "^3.2.1",
     "ethers": "^5.0.24",
-    "hardhat": "^2.0.5",
+    "hardhat": "^2.0.8",
     "husky": "^4.3.6",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
