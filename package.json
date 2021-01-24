@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@api3/airnode-abi": "^0.1.0",
-    "@api3/airnode-admin": "^0.1.1",
+    "@api3/airnode-admin": "^0.1.5",
     "@api3/airnode-protocol": "^0.1.0"
   },
   "devDependencies": {
@@ -30,10 +30,10 @@
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "chai": "^4.2.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.16.0",
-    "ethereum-waffle": "^3.2.1",
+    "eslint": "^7.18.0",
+    "ethereum-waffle": "^3.2.2",
     "ethers": "^5.0.24",
-    "hardhat": "^2.0.5",
+    "hardhat": "^2.0.8",
     "husky": "^4.3.8",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
