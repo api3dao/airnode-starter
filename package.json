@@ -31,7 +31,7 @@
     "chai": "^4.2.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.16.0",
-    "ethereum-waffle": "^3.2.1",
+    "ethereum-waffle": "^3.2.2",
     "ethers": "^5.0.24",
     "hardhat": "^2.0.5",
     "husky": "^4.3.6",
