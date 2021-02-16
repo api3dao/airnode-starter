@@ -94,7 +94,7 @@ docker run -it --rm \
   --env-file .env \
   --env COMMAND=deploy-first-time \
   -v $(pwd):/airnode/out \
-  api3/airnode:latest
+  api3/airnode-deployer:pre-alpha
 ```
 
 This will output a receipt file with the extension `.receipt.json`.
@@ -188,7 +188,7 @@ If you want to learn more, see the following resources:
 ## Taking down your Airnode
 
 It is very unlikely for you to forget to take down your Airnode because it is designed to be *set-and-forget*.
-When you are done with this project, go to `config/` as your working directory and use the command below where `$RECEIPT_FILENAME` is replaced with the name of your receipt file ending with `.receipt.json` (you can refer to our [Docker instructions](https://github.com/api3dao/airnode/blob/master/Docker.md) for more information)
+When you are done with this project, go to `config/` as your working directory and use the command below where `$RECEIPT_FILENAME` is replaced with the name of your receipt file ending with `.receipt.json` (you can refer to our [Docker instructions](https://github.com/api3dao/airnode/blob/pre-alpha/Docker.md) for more information)
 
 ```sh
 docker run -it --rm \
@@ -196,5 +196,5 @@ docker run -it --rm \
   --env COMMAND=remove-with-receipt \
   --env RECEIPT_FILENAME=$RECEIPT_FILENAME \
   -v $(pwd):/airnode/out \
-  api3/airnode:latest
+  api3/airnode-deployer:pre-alpha
 ```
