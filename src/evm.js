@@ -1,3 +1,4 @@
+const fs = require('fs');
 const ethers = require('ethers');
 const airnodeProtocol = require('@api3/airnode-protocol');
 
@@ -9,8 +10,11 @@ module.exports = {
   getAirnode: async function () {
     const wallet = ethers.Wallet.fromMnemonic(process.env.MNEMONIC);
     const provider = new ethers.providers.JsonRpcProvider(process.env.PROVIDER_URL);
+    const config = JSON.parse(fs.readFileSync('./config/config.json', 'utf-8'));
+    const providerChainId = (await provider.getNetwork()).chainId;
+    const chain = config.nodeSettings.chains.filter(chain => chain.id == providerChainId)[0];
     return new ethers.Contract(
-      airnodeProtocol.AirnodeAddresses[(await provider.getNetwork()).chainId],
+      chain.contracts.Airnode,
       airnodeProtocol.AirnodeArtifact.abi,
       wallet.connect(provider)
     );
