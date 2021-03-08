@@ -7,6 +7,7 @@
     "lint": "yarn run lint:eslint && yarn run lint:solhint",
     "lint:eslint": "eslint . --ext .js,.ts",
     "lint:solhint": "solhint ./**/*.sol",
+    "postinstall": "husky install",
     "prettify": "prettier --write ./**/*.{js,ts} --loglevel silent",
     "pretty-quick": "pretty-quick --staged --pattern \"**/*.*(js|ts)\"",
     "create-requester": "node ./scripts/create-requester.js",
@@ -34,14 +35,9 @@
     "ethereum-waffle": "^3.3.0",
     "ethers": "^5.0.31",
     "hardhat": "^2.0.11",
-    "husky": "^4.3.8",
+    "husky": "^5.1.3",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "solhint": "^3.3.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run pretty-quick && yarn run lint"
-    }
   }
 }
