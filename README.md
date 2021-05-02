@@ -10,6 +10,7 @@ Currently supported chains:
 - Ropsten
 - Rinkeby
 - Goerli
+- Kovan
 - xDai
 - Fantom
 
