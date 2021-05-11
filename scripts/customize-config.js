@@ -3,10 +3,9 @@ const fs = require('fs');
 const evm = require('../src/evm');
 
 async function main() {
-  const providerAdminAddress = (await evm.getWallet()).address;
+  const airnodeAdmin = (await evm.getWallet()).address;
   const config = JSON.parse(fs.readFileSync('./config/config.example.json', 'utf-8'));
-  config.nodeSettings.chains[0].providerAdminForRecordCreation = providerAdminAddress;
-  config.nodeSettings.chains[0].providers[0].url = process.env.PROVIDER_URL;
+  config[0].chains[0].airnodeAdmin = airnodeAdmin;
   fs.writeFileSync('./config/config.json', JSON.stringify(config, null, 2));
 }
 

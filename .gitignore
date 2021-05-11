@@ -6,5 +6,6 @@ artifacts
 
 **/.env
 **/config.json
-**/*.receipt.json
+**/secrets.env
+**/receipt.json
 log.json

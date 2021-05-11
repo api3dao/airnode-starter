@@ -18,7 +18,7 @@ async function main() {
   console.log('Making the request...');
   async function makeRequest() {
     const receipt = await exampleClient.makeRequest(
-      parameters.providerId,
+      parameters.airnodeId,
       parameters.endpointId,
       util.readFromLogJson('Requester index'),
       util.readFromLogJson('Designated wallet address'),

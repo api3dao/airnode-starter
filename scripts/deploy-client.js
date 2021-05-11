@@ -9,6 +9,7 @@ async function main() {
     evm.ExampleClientArtifact.bytecode,
     await evm.getWallet()
   );
+  console.log((await evm.getAirnode()).address);
   const exampleClient = await ExampleClientFactory.deploy((await evm.getAirnode()).address);
   await exampleClient.deployed();
   util.updateLogJson('ExampleClient address', exampleClient.address);

@@ -13,7 +13,7 @@ contract ExampleClient is AirnodeClient {
     {}
 
     function makeRequest(
-        bytes32 providerId,
+        bytes32 airnodeId,
         bytes32 endpointId,
         uint256 requesterInd,
         address designatedWallet,
@@ -22,7 +22,7 @@ contract ExampleClient is AirnodeClient {
         external
     {
         bytes32 requestId = airnode.makeFullRequest(
-            providerId,
+            airnodeId,
             endpointId,
             requesterInd,
             designatedWallet,

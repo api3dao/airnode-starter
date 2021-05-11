@@ -20,7 +20,7 @@ module.exports = {
   },
   readFromReceipt: function (name) {
     const files = fs.readdirSync('./config');
-    const receiptFiles = files.filter((file) => /\.receipt.json$/.test(file));
+    const receiptFiles = files.filter((file) => /receipt.json$/.test(file));
     if (receiptFiles.length === 0) {
       return null;
     }
@@ -28,6 +28,6 @@ module.exports = {
       throw new Error(`${receiptFiles.length} receipt files in ./config, expected 1`);
     }
     const receipt = JSON.parse(fs.readFileSync(`./config/${receiptFiles[0]}`, 'utf-8'));
-    return receipt[name];
+    return receipt[0][name];
   },
 };

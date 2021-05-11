@@ -9,7 +9,7 @@ async function main() {
   const airnode = await evm.getAirnode();
   const designatedWalletAddress = await airnodeAdmin.deriveDesignatedWallet(
     airnode,
-    parameters.providerId,
+    parameters.airnodeId,
     requesterIndex
   );
   util.updateLogJson('Designated wallet address', designatedWalletAddress);

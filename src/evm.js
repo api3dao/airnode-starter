@@ -1,6 +1,6 @@
 const fs = require('fs');
 const ethers = require('ethers');
-const airnodeProtocol = require('@api3/airnode-protocol');
+const airnodeProtocol = require('@airnode/protocol');
 
 if (!process.env.PROVIDER_URL || process.env.PROVIDER_URL === 'https://ropsten.infura.io/v3/{YOUR_KEY}') {
   throw new Error('Missing provider URL in .env');
@@ -12,10 +12,10 @@ module.exports = {
     const provider = new ethers.providers.JsonRpcProvider(process.env.PROVIDER_URL);
     const config = JSON.parse(fs.readFileSync('./config/config.json', 'utf-8'));
     const providerChainId = (await provider.getNetwork()).chainId;
-    const chain = config.nodeSettings.chains.filter(chain => chain.id == providerChainId)[0];
+    const chain = config[0].chains.filter((chain) => chain.id == providerChainId)[0];
     return new ethers.Contract(
-      chain.contracts.Airnode,
-      airnodeProtocol.AirnodeArtifact.abi,
+      chain.contracts.AirnodeRrp,
+      airnodeProtocol.AirnodeRrpArtifact.abi,
       wallet.connect(provider)
     );
   },
