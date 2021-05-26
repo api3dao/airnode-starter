@@ -35,7 +35,7 @@ contract ExampleClient is AirnodeClient {
     function fulfill(
         bytes32 requestId,
         uint256 statusCode,
-        int256 data
+        bytes calldata data
         )
         external
         onlyAirnode()
@@ -44,7 +44,8 @@ contract ExampleClient is AirnodeClient {
         delete incomingFulfillments[requestId];
         if (statusCode == 0)
         {
-            fulfilledData[requestId] = data;
+            int256 decodedData = abi.decode(data, (int256));
+            fulfilledData[requestId] = decodedData;
         }
     }
 }
