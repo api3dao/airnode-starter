@@ -36,7 +36,7 @@
     "ethers": "^5.1.4",
     "hardhat": "^2.2.1",
     "husky": "^6.0.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "pretty-quick": "^3.1.0",
     "solhint": "^3.3.4"
   }
