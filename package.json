@@ -35,7 +35,7 @@
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.4.3",
     "hardhat": "^2.6.2",
-    "husky": "^7.0.1",
+    "husky": "^7.0.2",
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.1",
     "solhint": "^3.3.6"
