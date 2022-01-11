@@ -1,4 +1,4 @@
-**WARNING:** This example is for the [pre-alpha version](https://docs.api3.org/airnode/pre-alpha/). For the following versions, visit the [`airnode-examples` package of the monorepo](https://github.com/api3dao/airnode/tree/master/packages/airnode-examples).
+**WARNING:** This example is for the old, [pre-alpha version](https://docs.api3.org/airnode/pre-alpha/), which is probably not what you're looking for. For the following versions, visit the [`airnode-examples` package of the monorepo](https://github.com/api3dao/airnode/tree/master/packages/airnode-examples).
 
 # Airnode starter
 
