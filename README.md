@@ -1,3 +1,5 @@
+**WARNING:** This example is for the [pre-alpha version](https://docs.api3.org/airnode/pre-alpha/). For the following versions, visit the [`airnode-examples` package of the monorepo](https://github.com/api3dao/airnode/tree/master/packages/airnode-examples).
+
 # Airnode starter
 
 > A starter project for deploying an Airnode and making requests to it
