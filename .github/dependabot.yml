@@ -6,8 +6,6 @@ updates:
     interval: monthly
     time: "11:00"
   open-pull-requests-limit: 10
-  reviewers:
-  - andreogle
   ignore:
   - dependency-name: husky
     versions:
